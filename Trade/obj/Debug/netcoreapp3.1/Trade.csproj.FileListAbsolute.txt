@@ -1,0 +1,15 @@
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\bin\Debug\netcoreapp3.1\Trade.exe
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\obj\Debug\netcoreapp3.1\Trade.csprojAssemblyReference.cache
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\obj\Debug\netcoreapp3.1\Trade.AssemblyInfoInputs.cache
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\obj\Debug\netcoreapp3.1\Trade.AssemblyInfo.cs
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\bin\Debug\netcoreapp3.1\Trade.deps.json
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\bin\Debug\netcoreapp3.1\Trade.runtimeconfig.json
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\bin\Debug\netcoreapp3.1\Trade.runtimeconfig.dev.json
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\bin\Debug\netcoreapp3.1\Trade.dll
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\bin\Debug\netcoreapp3.1\Trade.pdb
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\bin\Debug\netcoreapp3.1\CsvHelper.dll
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\obj\Debug\netcoreapp3.1\Trade.csproj.CoreCompileInputs.cache
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\obj\Debug\netcoreapp3.1\Trade.csproj.CopyComplete
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\obj\Debug\netcoreapp3.1\Trade.dll
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\obj\Debug\netcoreapp3.1\Trade.pdb
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\obj\Debug\netcoreapp3.1\Trade.genruntimeconfig.cache
