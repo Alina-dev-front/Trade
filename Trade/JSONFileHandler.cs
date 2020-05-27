@@ -14,8 +14,8 @@ namespace Trade
 
             var products = new List<Product>()
             {
-                new Product() {Id = 1, Name = "Martin", Price = 42, Producer = new Product().Producer, Shop = "Ica"},
-                new Product() {Id = 2, Name = "Anna", Price = 30, Producer = new Product().Producer, Shop = "Coop"}
+                new Product() {Id = 1, Name = "Martin", Price = 42, Producer = new Product().Producer, Shop = new Product().Shop},
+                new Product() {Id = 2, Name = "Anna", Price = 30, Producer = new Product().Producer, Shop = new Product().Shop}
             };
             var path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             var programPath = Path.Combine(path, ".TradeProject");

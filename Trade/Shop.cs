@@ -4,15 +4,12 @@ using System.Text;
 
 namespace Trade
 {
-    class Shop
+    public class Shop
     {
-        public int ShopId { get; set; }
         public string ShopName { get; set; }
 
-        public Shop(int shopId, string shopName)
+        public Shop()
         {
-            ShopId = shopId;
-            ShopName = shopName;
         }
     }
 }

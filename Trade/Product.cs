@@ -12,14 +12,14 @@ namespace Trade
         public string Name { get; set; }
         public int Price { get; set; }
         public Producer Producer { get; set; }
-        public string Shop { get; set; }
+        public Shop Shop { get; set; }
 
         public override string ToString()
         {
             return $"Id: {Id} Name: {Name} Price: {Price} Producer: {Producer} Shop: {Shop}";
         }
 
-        public Product(int id, string name, int price, Producer producer, string shop)
+        public Product(int id, string name, int price, Producer producer, Shop shop)
         {
             Id = id;
             Name = name;

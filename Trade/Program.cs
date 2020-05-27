@@ -25,25 +25,11 @@ namespace Trade
             
             new FileProductRepository().InsertProductInFile(csvPath, Environment.NewLine + "15,Apelsin,20,GoodFood,Ica");
 
-            foreach (var product in products)
+            var list = products.Where(s => s.Shop.ShopName == "Ica");
+            foreach (var prod in list)
             {
-                product.Producer.ProducerName = "xuy";
-                Console.WriteLine(product.Producer.ProducerName);
-                Console.WriteLine(product);
+                Console.WriteLine(prod.Name);
             }
-
-            Shop shop1 = new Shop(1, "Ica");
-            Shop shop2 = new Shop(2, "Coop");
-            Shop shop3 = new Shop(3, "Metro");
-
-            Producer producer1 = new Producer() { ProducerId = 0, ProducerName = "Arla" };
-            Producer producer2 = new Producer() { ProducerId = 1, ProducerName = "GoodFood" };
-            Producer producer3 = new Producer() { ProducerId = 2, ProducerName = "Nestle" };
-            Producer producer4 = new Producer() { ProducerId = 3, ProducerName = "Nivea" };
-
-/*
-            var list = prods.Where(s => s.Producer.ProducerId == 0);*/
-
 
             Console.WriteLine(products.Count);
             Console.WriteLine("Hello World!");
