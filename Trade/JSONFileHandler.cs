@@ -9,14 +9,14 @@ namespace Trade
     class JSONFileHandler
     {
         /*Need to keep files*/
-        public void Run()
+        public void Run(List<Product> products)
         {
 
-            var products = new List<Product>()
+            /*var products = new List<Product>()
             {
-                new Product() {Id = 1, Name = "Martin", Price = 42, Producer = new Product().Producer, Shop = new Product().Shop},
-                new Product() {Id = 2, Name = "Anna", Price = 30, Producer = new Product().Producer, Shop = new Product().Shop}
-            };
+                new Product() {Name = "Banan", Price = 42, Producer = new Product().Producer, Shop = new Product().Shop},
+                new Product() {Name = "Ananas", Price = 30, Producer = new Product().Producer, Shop = new Product().Shop}
+            };*/
             var path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             var programPath = Path.Combine(path, ".TradeProject");
             var jsonPath = Path.Combine(programPath, "Products.json");
@@ -31,9 +31,10 @@ namespace Trade
             }
         }
 
-        public static void SaveToJson(string jsonPath, List<Product> products)
+        public void SaveToJson(string jsonPath, List<Product> products)
         {
-            throw new NotImplementedException();
+            var jsonString = JsonSerializer.SerializeToUtf8Bytes(products);
+            File.WriteAllBytes(jsonPath, jsonString);
         }
 
         public static IEnumerable<T> LoadFromJson<T>(string filePath)
@@ -44,7 +45,7 @@ namespace Trade
             return records;
         }
 
-        public static void SaveToJson<T>(string filePath, List<T> items)
+        public void SaveToJson<T>(string filePath, IEnumerable<T> items)
         {
             var jsonString = JsonSerializer.SerializeToUtf8Bytes(items);
             File.WriteAllBytes(filePath, jsonString);
