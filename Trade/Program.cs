@@ -28,15 +28,29 @@ namespace Trade
                 switch (inputValue)
                 {
                     case "1":
+                        foreach(var product in products)
+                        {
+                            Console.WriteLine(product);
+                        }
                         inputValue = Console.ReadLine();
                         break;
                     case "2":
+                        SearchProductMinPrice(products);
                         inputValue = Console.ReadLine();
                         break;
                     case "3":
-                        string productProperties = GetDataFromUser();
+                        string productProperties = GetProductFromUser();
                         new FileProductRepository().InsertProductInFile(csvPath, Environment.NewLine + productProperties);
                         Console.WriteLine("The product has been successfully added to the list. Open the CSV-file to check.");
+                        inputValue = Console.ReadLine();
+                        break;
+                    case "4":
+                        var searchTerm = GetUserSearchTerm();
+                        foreach (var product in products)
+                        {
+                            if (product.Name.Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase))
+                                Console.WriteLine(product);
+                        }
                         inputValue = Console.ReadLine();
                         break;
                     case "q":
@@ -53,6 +67,7 @@ namespace Trade
             {
                 Console.WriteLine(prod.Name);
             }
+
             SaveToJson(jsonPath, list);
 
             Console.WriteLine("Hello World!");
@@ -64,13 +79,20 @@ namespace Trade
             Console.WriteLine("------------------------\n");
             Console.WriteLine("Choose one option and press Enter:");
             Console.WriteLine("Press 1 if you want to see all the products");
-            Console.WriteLine("Press 2 if you want to see all the producers");
+            Console.WriteLine("Press 2 if you want to choose the cheapest products");
             Console.WriteLine("Press 3 if you want to add product to the list");
             Console.WriteLine("Press 4 if you want to start searching product");
             Console.WriteLine("Press q to exit");
         }
 
-        public static string GetDataFromUser()
+        public static string GetUserSearchTerm()
+        {
+            Console.WriteLine("Insert search term. You can insert full word or just a part of it: ");
+            string searchTerm = Console.ReadLine();
+            return searchTerm;
+        }
+
+        public static string GetProductFromUser()
         {
             string[] paramNames = { "name", "price", "producer", "shop" };
             string parameters = "";
@@ -124,5 +146,24 @@ namespace Trade
             File.WriteAllBytes(jsonPath, jsonString);
         }
 
+        public static int GetMaxPriceFromUser()
+        {
+            Console.WriteLine("Insert maximum price: ");
+            int maxPrice = Int32.Parse(Console.ReadLine());
+            return maxPrice;
+        }
+
+        public static void SearchProductMinPrice(List<Product> products)
+        {
+            var maxPrice = GetMaxPriceFromUser();
+            var query = from p in products
+                        where p.Price < maxPrice
+                        select p;
+            Console.WriteLine("Price is lower than " + maxPrice.ToString() + " kr: ");
+            foreach (var product in query)
+            {
+                Console.WriteLine(product.Name + "  " + product.Price);
+            }
+        }
     }
 }
