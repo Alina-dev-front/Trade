@@ -19,7 +19,7 @@ namespace Trade
         {
             var products = File.ReadLines(csvPath).Skip(1)
                  .Select(s => s.Split(","))
-                 .Select(sa => new Product() { Name = sa[0], Price = Int32.Parse(sa[1]), Producer = new Producer() {ProducerName = sa[2]} , Shop = new Shop() {ShopName = sa[3]} })
+                 .Select(sa => new Product() { Name = sa[0], Price = Int32.Parse(sa[1]), Producer = new Producer() { ProducerName = sa[2] }, Shop = new Shop() { ShopName = sa[3] } })
                  .ToList();
             return products;
         }
