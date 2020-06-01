@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using CsvHelper.Configuration.Attributes;
+using Trade.Repositories;
 
-namespace Trade
+
+namespace Trade.Models
 {
     public class Product
     {
