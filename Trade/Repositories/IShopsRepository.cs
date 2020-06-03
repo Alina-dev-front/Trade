@@ -5,11 +5,11 @@ using Trade.Models;
 
 namespace Trade.Repositories
 {
-    public interface IProductRepository
+    public interface IShopsRepository
     {
-        List<Product> GetAll();
-        void Delete(Product product);
-        void Insert(Product product);
+        List<Shop> GetAll();
+        void Delete(Shop shop);
+        void Insert(Shop shop);
         void Save();
     }
 }

@@ -14,10 +14,25 @@ namespace Trade
     {
         static void Main(string[] args)
         {
-            /*var jsonPath = GetUserJsonPath();*/
-
             IProductRepository productRepository = new FileProductRepository();
             var products = productRepository.GetAll();
+
+            var shops = new List<Shop>
+            {
+                new Shop() { ShopId = 0, ShopName = "Ica" },
+                new Shop() { ShopId = 1, ShopName = "Coop" },
+                new Shop() { ShopId = 2, ShopName = "Metro" }
+            };
+
+            List<Product> stock = new List<Product>();
+            Product product1 = new Product() { Name = "Apple", Price = 32, Producer = new Producer() { ProducerName = "Max" }, Shops = shops };
+            Product product2 = new Product() { Name = "Pear", Price = 84, Producer = new Producer() { ProducerName = "Mimi" }, Shops = shops };
+            stock.Add(product1);
+            stock.Add(product2);
+
+            Console.WriteLine(product1);
+
+
 
             Console.WriteLine("Product Manager Project in C#\r");
             Menu();
@@ -27,14 +42,10 @@ namespace Trade
                 switch (inputValue)
                 {
                     case "1":
-                        var milk = products[0];
-                        productRepository.Delete(milk);
                         foreach (var product in products)
                         {
                             Console.WriteLine(product);
                         }
-                       
-
                         inputValue = Console.ReadLine();
                         break;
                     case "2":
@@ -42,18 +53,40 @@ namespace Trade
                         inputValue = Console.ReadLine();
                         break;
                     case "3":
-                        /*string productProperties = GetProductFromUser();
-                        new FileProductRepository().InsertProductInFile(csvPath, Environment.NewLine + productProperties);
-                        Console.WriteLine("The product has been successfully added to the list. Open the CSV-file to check.");
+                        List<string> parametersFromUser = GetProductParametersFromUser();
+                        Product productFromUser = new Product();
+                        productFromUser.Name = parametersFromUser[0];
+                        productFromUser.Price = Int32.Parse(parametersFromUser[1]);
+                        productFromUser.Producer = new Producer() { ProducerName = parametersFromUser[2] };
+                        productRepository.Insert(productFromUser);
+                        Console.WriteLine("The product has been successfully added to the list. Open the JSON-file to check.");
                         inputValue = Console.ReadLine();
-                        break;*/
+                        break;
                     case "4":
+                        var milk = products[0];
+                        productRepository.Delete(milk);
+                        inputValue = Console.ReadLine();
+                        break;
+                    case "5":
                         var searchTerm = GetUserSearchTerm();
                         foreach (var product in products)
                         {
                             if (product.Name.Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase))
                                 Console.WriteLine(product);
                         }
+                        inputValue = Console.ReadLine();
+                        break;
+                    case "6":
+                        var numberOfProductForEachProducer = products.GroupBy(p => p.Producer.ProducerName).Select(g =>
+                    new { Producer = g.Key, Count = g.Count() }).ToList();
+                        foreach (var i in numberOfProductForEachProducer)
+                        {
+                            Console.WriteLine(i);
+                        }
+                        inputValue = Console.ReadLine();
+                        break;
+                    case "7":
+                        
                         inputValue = Console.ReadLine();
                         break;
                     case "q":
@@ -64,18 +97,7 @@ namespace Trade
                         break;
                 }
             }
-
-            var list = products.Where(s => s.Shop.ShopName == "Ica");
-            foreach (var prod in list)
-            {
-                Console.WriteLine(prod.Name);
-            }
-
-            /*SaveToJson(jsonPath, list);*/
-
-            Console.WriteLine("Hello World!");
         }
-
 
         public static void Menu()
         {
@@ -84,7 +106,10 @@ namespace Trade
             Console.WriteLine("Press 1 if you want to see all the products");
             Console.WriteLine("Press 2 if you want to choose the cheapest products");
             Console.WriteLine("Press 3 if you want to add product to the list");
-            Console.WriteLine("Press 4 if you want to start searching product");
+            Console.WriteLine("Press 4 if you want to delete product from the list");
+            Console.WriteLine("Press 5 if you want to start searching product");
+            Console.WriteLine("Press 6 if you want to find all producers and their products");
+            Console.WriteLine("Press 7 if you want to find all shops that have products in their warehouse");
             Console.WriteLine("Press q to exit");
         }
 
@@ -95,42 +120,23 @@ namespace Trade
             return searchTerm;
         }
 
-        public static string GetProductFromUser()
+        public static List<string> GetProductParametersFromUser()
         {
-            string[] paramNames = { "name", "price", "producer", "shop" };
-            string parameters = "";
+            static string GetParameters(string name)
+            {
+                Console.WriteLine("Insert product's " + name + " and press Enter: ");
+                string parameter = Console.ReadLine();
+                return parameter;
+                
+            }
+            string[] paramNames = { "name", "price", "producer" };
+            List<string> parametersFromUser = new List<string>();
             for (var i = 0; i <= paramNames.Count() - 1; i++)
             {
-                parameters += GetParameters(paramNames[i]);
-                if (i < paramNames.Count() - 1)
-                {
-                    parameters += ",";
-                }
+                parametersFromUser.Add(GetParameters(paramNames[i]));
             }
-            return parameters;
+            return parametersFromUser;
         }
-
-        public static string GetParameters(string name)
-        {
-            Console.WriteLine("Insert product's " + name + " and press Enter: ");
-            string parameter = Console.ReadLine();
-            string parameterFromUser = parameter.ToString();
-            return parameterFromUser;
-        }
-
-        /*public static string GetUserJsonPath()
-        {
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            var programPath = Path.Combine(path, ".TradeProject");
-            var jsonPath = Path.Combine(programPath, "Products.json");
-            return jsonPath;
-        }*/
-
-        /*public static void SaveToJson(string jsonPath, IEnumerable<Product> products)
-        {
-            var jsonString = JsonSerializer.SerializeToUtf8Bytes(products);
-            File.WriteAllBytes(jsonPath, jsonString);
-        }*/
 
         public static int GetMaxPriceFromUser()
         {
@@ -142,10 +148,8 @@ namespace Trade
         public static void SearchProductMinPrice(List<Product> products)
         {
             var maxPrice = GetMaxPriceFromUser();
-            var query = from p in products
-                        where p.Price < maxPrice
-                        select p;
-            Console.WriteLine("Price is lower than " + maxPrice.ToString() + " kr: ");
+            var query = products.Where(p => p.Price < maxPrice).Take(10);
+            Console.WriteLine("These products have price lower than " + maxPrice.ToString() + " kr:");
             foreach (var product in query)
             {
                 Console.WriteLine(product.Name + "  " + product.Price);
