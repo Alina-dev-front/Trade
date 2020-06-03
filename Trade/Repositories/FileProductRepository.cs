@@ -24,13 +24,13 @@ namespace Trade.Repositories
         public List<Product> GetProducts() 
         {
             return File.ReadLines(_csvPath).Skip(1)
-                .Select(s => s.Split(","))
+                .Select(s => s.Split(";"))
                 .Select(sa => new Product()
                 {
                     Name = sa[0],
                     Price = Int32.Parse(sa[1]),
                     Producer = new Producer() { ProducerName = sa[2] },
-                    Shops = new List<Shop>() { new Shop() { ShopName = sa[3] } }
+                    Shops = new List<Shop>() { new Shop(sa[3]) { ShopName = sa[3] } }
                 })
                 .ToList();
         }

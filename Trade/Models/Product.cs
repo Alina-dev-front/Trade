@@ -17,7 +17,7 @@ namespace Trade.Models
 
         public override string ToString()
         {
-            return $"Name: {Name} Price: {Price} Producer: {Producer.ProducerName} Shop: {Shops}";
+            return $"Name: {Name} Price: {Price} Producer: {Producer.ProducerName} Shop: {Shops[0].ListShopName}";
         }
 
         public Product(string name, int price, Producer producer)

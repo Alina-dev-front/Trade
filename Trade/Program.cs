@@ -17,7 +17,7 @@ namespace Trade
             IProductRepository productRepository = new FileProductRepository();
             var products = productRepository.GetAll();
 
-            var shops = new List<Shop>
+/*            var shops = new List<Shop>
             {
                 new Shop() { ShopId = 0, ShopName = "Ica" },
                 new Shop() { ShopId = 1, ShopName = "Coop" },
@@ -30,7 +30,7 @@ namespace Trade
             stock.Add(product1);
             stock.Add(product2);
 
-            Console.WriteLine(product1);
+            Console.WriteLine(product1);*/
 
 
 
@@ -44,7 +44,21 @@ namespace Trade
                     case "1":
                         foreach (var product in products)
                         {
-                            Console.WriteLine(product);
+                            Console.WriteLine("name of product:");
+                            Console.WriteLine(product.Name);
+                            Console.WriteLine("price:");
+                            Console.WriteLine(product.Price);
+                            Console.WriteLine("Made by:");
+                            Console.WriteLine(product.Producer.ProducerName);
+                            Console.WriteLine("Shops where product is available:");
+                            foreach (var shops in product.Shops)
+                            {
+                                foreach (var shop in shops.ListShopName)
+                                { 
+                                    Console.WriteLine(shop);
+                                }
+                            }
+                            Console.WriteLine("____________________________________________________");
                         }
                         inputValue = Console.ReadLine();
                         break;

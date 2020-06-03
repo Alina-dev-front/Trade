@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Trade.Repositories;
 
@@ -9,11 +10,18 @@ namespace Trade.Models
     {
         public int ShopId { get; set; }
         public string ShopName { get; set; }
+        public List<string> ListShopName { get; set; }
 
-        public Shop()
+        public Shop(string shops)
         {
+            ListShopName = ConvertStringToList(shops);
         }
 
+
+        public List<string> ConvertStringToList(string shops)
+        {
+            return shops.Split(",").ToList();
+        }
     }
 }
 
