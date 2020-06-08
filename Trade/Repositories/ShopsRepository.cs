@@ -7,7 +7,7 @@ using Trade.Models;
 
 namespace Trade.Repositories
 {
-    public class ShopsRepository
+    public class ShopsRepository : IShopsRepository
     {
         private List<Shop> _shop;
 
@@ -20,21 +20,29 @@ namespace Trade.Repositories
             return _shop;
         }
 
-        public void Delete(Shop shop)
+        public void ShowProductsInEachShop(List<Product> products)
         {
-            _shop.Remove(shop);
-            Save();
-        }
-
-        public void Insert(Shop shop)
-        {
-            _shop.Add(shop);
-            Save();
-        }
-
-        public void Save()
-        {
-
+            var gruppedByShops = new Dictionary<string, string>();
+            foreach (var product in products)
+            {
+                foreach (var shop in product.Shops[0].ListShopName)
+                {
+                    if (!gruppedByShops.ContainsKey(shop))
+                    {
+                        gruppedByShops.Add(shop, product.Name);
+                    }
+                    else
+                    {
+                        gruppedByShops[shop] += ", " + product.Name;
+                    }
+                }
+            }
+            foreach (var element in gruppedByShops)
+            {
+                Console.WriteLine("In " + element.Key + " is in stock:");
+                Console.WriteLine(element.Value);
+                Console.WriteLine("______________________________________");
+            }
         }
     }
 }

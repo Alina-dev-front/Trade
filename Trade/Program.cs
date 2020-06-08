@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Globalization;
-using System.IO;
-using CsvHelper;
 using System.Linq;
 using Trade.Models;
 using Trade.Repositories;
@@ -17,23 +13,6 @@ namespace Trade
             IProductRepository productRepository = new FileProductRepository();
             var products = productRepository.GetAll();
 
-/*            var shops = new List<Shop>
-            {
-                new Shop() { ShopId = 0, ShopName = "Ica" },
-                new Shop() { ShopId = 1, ShopName = "Coop" },
-                new Shop() { ShopId = 2, ShopName = "Metro" }
-            };
-
-            List<Product> stock = new List<Product>();
-            Product product1 = new Product() { Name = "Apple", Price = 32, Producer = new Producer() { ProducerName = "Max" }, Shops = shops };
-            Product product2 = new Product() { Name = "Pear", Price = 84, Producer = new Producer() { ProducerName = "Mimi" }, Shops = shops };
-            stock.Add(product1);
-            stock.Add(product2);
-
-            Console.WriteLine(product1);*/
-
-
-
             Console.WriteLine("Product Manager Project in C#\r");
             Menu();
             string inputValue = Console.ReadLine();
@@ -42,24 +21,7 @@ namespace Trade
                 switch (inputValue)
                 {
                     case "1":
-                        foreach (var product in products)
-                        {
-                            Console.WriteLine("name of product:");
-                            Console.WriteLine(product.Name);
-                            Console.WriteLine("price:");
-                            Console.WriteLine(product.Price);
-                            Console.WriteLine("Made by:");
-                            Console.WriteLine(product.Producer.ProducerName);
-                            Console.WriteLine("Shops where product is available:");
-                            foreach (var shops in product.Shops)
-                            {
-                                foreach (var shop in shops.ListShopName)
-                                { 
-                                    Console.WriteLine(shop);
-                                }
-                            }
-                            Console.WriteLine("____________________________________________________");
-                        }
+                        productRepository.ShowAllProducts(products);
                         inputValue = Console.ReadLine();
                         break;
                     case "2":
@@ -67,40 +29,24 @@ namespace Trade
                         inputValue = Console.ReadLine();
                         break;
                     case "3":
-                        List<string> parametersFromUser = GetProductParametersFromUser();
-                        Product productFromUser = new Product();
-                        productFromUser.Name = parametersFromUser[0];
-                        productFromUser.Price = Int32.Parse(parametersFromUser[1]);
-                        productFromUser.Producer = new Producer() { ProducerName = parametersFromUser[2] };
-                        productRepository.Insert(productFromUser);
-                        Console.WriteLine("The product has been successfully added to the list. Open the JSON-file to check.");
+                        AddProductWithUsersParameters(products, productRepository);
                         inputValue = Console.ReadLine();
                         break;
                     case "4":
-                        var milk = products[0];
-                        productRepository.Delete(milk);
+                        DeleteProduct(products, productRepository);
                         inputValue = Console.ReadLine();
                         break;
                     case "5":
-                        var searchTerm = GetUserSearchTerm();
-                        foreach (var product in products)
-                        {
-                            if (product.Name.Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase))
-                                Console.WriteLine(product);
-                        }
+                        productRepository.SearchProductByName(products);
                         inputValue = Console.ReadLine();
                         break;
                     case "6":
-                        var numberOfProductForEachProducer = products.GroupBy(p => p.Producer.ProducerName).Select(g =>
-                    new { Producer = g.Key, Count = g.Count() }).ToList();
-                        foreach (var i in numberOfProductForEachProducer)
-                        {
-                            Console.WriteLine(i);
-                        }
+                        productRepository.ShowProducersAndTheirProducts(products);
                         inputValue = Console.ReadLine();
                         break;
                     case "7":
-                        
+                        IShopsRepository shopsRepository = new ShopsRepository();
+                        shopsRepository.ShowProductsInEachShop(products);
                         inputValue = Console.ReadLine();
                         break;
                     case "q":
@@ -127,11 +73,33 @@ namespace Trade
             Console.WriteLine("Press q to exit");
         }
 
-        public static string GetUserSearchTerm()
+        public static void AddProductWithUsersParameters(List<Product> products, IProductRepository productRepository)
         {
-            Console.WriteLine("Insert search term. You can insert full word or just a part of it: ");
-            string searchTerm = Console.ReadLine();
-            return searchTerm;
+            List<string> parametersFromUser = GetProductParametersFromUser();
+            Product productFromUser = new Product
+            {
+                Id = products.Last().Id + 1,
+                Name = parametersFromUser[0],
+                Price = Int32.Parse(parametersFromUser[1]),
+                Producer = new Producer() { ProducerName = parametersFromUser[2] },
+                Shops = new List<Shop>() { new Shop(parametersFromUser[3]) { ShopName = parametersFromUser[3] } }
+            };
+            productRepository.Insert(productFromUser);
+            Console.WriteLine("The product has been successfully added to the list. Open the JSON-file to check.");
+        }
+
+        public static void DeleteProduct(List<Product> products, IProductRepository productRepository)
+        {
+            Console.WriteLine("Choose product which you want to delete. Type product's ID below.");
+            foreach (var product in products)
+            {
+                Console.WriteLine($"Id: " + product.Id + " Name: " + product.Name + " Price: " + product.Price + " Producer: " + product.Producer.ProducerName);
+            }
+            var input = Console.ReadLine();
+            int idProductToDelete = Int32.Parse(input);
+            Product productToDelete = productRepository.GetById(idProductToDelete);
+            productRepository.Delete(productToDelete);
+            Console.WriteLine("The product has been successfully deleted from the list. Open the JSON-file to check.");
         }
 
         public static List<string> GetProductParametersFromUser()
@@ -143,7 +111,7 @@ namespace Trade
                 return parameter;
                 
             }
-            string[] paramNames = { "name", "price", "producer" };
+            string[] paramNames = { "name", "price", "producer", "shop" };
             List<string> parametersFromUser = new List<string>();
             for (var i = 0; i <= paramNames.Count() - 1; i++)
             {

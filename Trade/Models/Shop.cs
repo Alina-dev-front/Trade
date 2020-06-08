@@ -11,6 +11,7 @@ namespace Trade.Models
         public int ShopId { get; set; }
         public string ShopName { get; set; }
         public List<string> ListShopName { get; set; }
+        public List<Product> ProductList { get; set; }
 
         public Shop(string shops)
         {
