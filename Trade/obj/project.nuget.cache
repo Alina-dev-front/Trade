@@ -1,12 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "jAb5czIWsru1BO/Ru7RdtJzkjU4g694LeUUuB6NJCS7Z6NSeqqWVVBrebpFxccCW/LxAvmxrlAbCL09ByS4qwQ==",
+  "dgSpecHash": "+ipYtXw6TlSLdcLvTkZ5GWSIHYyfl11PGOmquxZV+oticQF4hVxU93eU0WhQovoAbjxOyKMtrpYXqGgmelIhDQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Mr.X\\Documents\\Projects\\Trade\\Trade\\Trade.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mr.X\\.nuget\\packages\\csvhelper\\15.0.5\\csvhelper.15.0.5.nupkg.sha512",
-    "C:\\Users\\Mr.X\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
-    "C:\\Users\\Mr.X\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.4\\microsoft.netcore.app.host.win-x64.3.1.4.nupkg.sha512"
+    "C:\\Users\\Mr.X\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512"
   ],
   "logs": []
 }

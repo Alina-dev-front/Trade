@@ -8,6 +8,6 @@ namespace Trade.Repositories
     public interface IShopsRepository
     {
         List<Shop> GetAll();
-        void ShowProductsInEachShop(List<Product> products)
+        void ShowProductsInEachShop(List<Product> products);
     }
 }

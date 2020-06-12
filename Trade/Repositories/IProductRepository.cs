@@ -14,6 +14,6 @@ namespace Trade.Repositories
         void Save();
         void ShowAllProducts(List<Product> products);
         void SearchProductByName(List<Product> products);
-        void ShowProducersAndTheirProducts(List<Product> products)
+        void ShowProducersAndTheirProducts(List<Product> products);
     }
 }

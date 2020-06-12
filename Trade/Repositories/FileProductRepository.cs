@@ -5,7 +5,6 @@ using System.Linq;
 using Trade.Models;
 using System.Text.Json;
 
-
 namespace Trade.Repositories
 {
     public class FileProductRepository : IProductRepository
@@ -16,13 +15,14 @@ namespace Trade.Repositories
 
         public FileProductRepository()
         {
-            _csvPath = GetUserFileDirectory();
+            _csvPath = new FileHandler().GetUserFileDirectory();
             _products = GetProducts();
-            _jsonPath = GetUserJsonPath();
+            _jsonPath = new FileHandler().GetUserJsonPath();
         }
 
         public List<Product> GetProducts() 
         {
+            Console.WriteLine(_csvPath);
             return File.ReadLines(_csvPath).Skip(1)
                 .Select(s => s.Split(";"))
                 .Select(sa => new Product()
@@ -108,32 +108,6 @@ namespace Trade.Repositories
             {
                 Console.WriteLine(i);
             }
-        }
-
-        public static string GetUserFileDirectory()
-        {
-            static string GetUserHomePath()
-            {
-                return Environment.GetFolderPath(Environment.SpecialFolder.UserProfile, Environment.SpecialFolderOption.DoNotVerify);
-            }
-
-            var homePath = GetUserHomePath();
-            var programPath = Path.Combine(homePath, ".TradeProject");
-
-            if (!Directory.Exists(programPath))
-            {
-                Directory.CreateDirectory(programPath);
-            }
-
-            return Path.Combine(programPath, "ProductData.csv");
-        }
-
-        public static string GetUserJsonPath()
-        {
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            var programPath = Path.Combine(path, ".TradeProject");
-            var jsonPath = Path.Combine(programPath, "Products.json");
-            return jsonPath;
         }
     }
 }
