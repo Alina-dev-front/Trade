@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mr.X\\Documents\\Projects\\Trade\\Trade\\Trade.csproj": {}
+    "C:\\Users\\Mr.X\\Documents\\Projects\\Trade\\TradeTest\\TradeTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mr.X\\Documents\\Projects\\Trade\\Trade\\Trade.csproj": {
+    "C:\\Users\\Mr.X\\Documents\\Projects\\Trade\\TradeTest\\TradeTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mr.X\\Documents\\Projects\\Trade\\Trade\\Trade.csproj",
-        "projectName": "Trade",
-        "projectPath": "C:\\Users\\Mr.X\\Documents\\Projects\\Trade\\Trade\\Trade.csproj",
+        "projectUniqueName": "C:\\Users\\Mr.X\\Documents\\Projects\\Trade\\TradeTest\\TradeTest.csproj",
+        "projectName": "TradeTest",
+        "projectPath": "C:\\Users\\Mr.X\\Documents\\Projects\\Trade\\TradeTest\\TradeTest.csproj",
         "packagesPath": "C:\\Users\\Mr.X\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mr.X\\Documents\\Projects\\Trade\\Trade\\obj\\",
+        "outputPath": "C:\\Users\\Mr.X\\Documents\\Projects\\Trade\\TradeTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Mr.X\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -38,9 +38,21 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "CsvHelper": {
+            "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[15.0.5, )"
+              "version": "[16.5.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.4.0, )"
             }
           },
           "imports": [
