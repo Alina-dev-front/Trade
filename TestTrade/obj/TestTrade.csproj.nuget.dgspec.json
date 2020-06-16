@@ -42,9 +42,25 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "FakeItEasy": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            },
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[5.10.3, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.5.0, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.10.4, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.14.2, )"
             },
             "coverlet.collector": {
               "target": "Package",

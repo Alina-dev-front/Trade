@@ -22,7 +22,6 @@ namespace Trade.Repositories
 
         public List<Product> GetProducts() 
         {
-            Console.WriteLine(_csvPath);
             return File.ReadLines(_csvPath).Skip(1)
                 .Select(s => s.Split(";"))
                 .Select(sa => new Product()

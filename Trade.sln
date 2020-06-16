@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trade", "Trade\Trade.csproj", "{1FCF0C98-708C-49C7-B77D-C3D7A22599AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTrade", "TestTrade\TestTrade.csproj", "{A6BF7C30-7DE0-45D0-8BCB-A8354A555BF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTrade", "TestTrade\TestTrade.csproj", "{A6BF7C30-7DE0-45D0-8BCB-A8354A555BF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductMSTest", "ProductMSTest\ProductMSTest.csproj", "{B0EE8F1F-F2F6-445A-919E-1126FD78F415}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A6BF7C30-7DE0-45D0-8BCB-A8354A555BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6BF7C30-7DE0-45D0-8BCB-A8354A555BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6BF7C30-7DE0-45D0-8BCB-A8354A555BF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0EE8F1F-F2F6-445A-919E-1126FD78F415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0EE8F1F-F2F6-445A-919E-1126FD78F415}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0EE8F1F-F2F6-445A-919E-1126FD78F415}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0EE8F1F-F2F6-445A-919E-1126FD78F415}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

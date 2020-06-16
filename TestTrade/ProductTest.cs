@@ -3,6 +3,12 @@ using Trade.Repositories;
 using Trade.Models;
 using Xunit;
 using System.Collections.Generic;
+using System.Linq;
+using FluentAssertions;
+using FluentAssertions.Common;
+using Microsoft.VisualBasic;
+using FluentAssertions.Collections;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 namespace TestTrade
 {
@@ -38,7 +44,6 @@ namespace TestTrade
 
             Assert.Equal(12, products.Count);
         }
-
-
     }
 }
+
