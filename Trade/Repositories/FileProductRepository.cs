@@ -26,7 +26,7 @@ namespace Trade.Repositories
                 .Select(s => s.Split(";"))
                 .Select(sa => new Product()
                 {
-                    Id = Int32.Parse(sa[0]),
+                    Id = sa[0],
                     Name = sa[1],
                     Price = Int32.Parse(sa[2]),
                     Producer = new Producer() { ProducerName = sa[3] },
@@ -40,7 +40,7 @@ namespace Trade.Repositories
             return _products;
         }
 
-        public Product GetById(long id)
+        public Product GetById(string id)
         {
             return _products.First(p => p.Id == id);
         }
@@ -61,52 +61,6 @@ namespace Trade.Repositories
         {
             var jsonString = JsonSerializer.SerializeToUtf8Bytes(_products);
             File.WriteAllBytes(_jsonPath, jsonString);
-        }
-
-        public void ShowAllProducts(List<Product> products)
-        {
-            foreach (var product in products)
-            {
-                Console.WriteLine("Name of product: " + product.Name);
-                Console.WriteLine("Price: " + product.Price);
-                Console.WriteLine("Made by: " + product.Producer.ProducerName);
-                Console.WriteLine("Shops where product is available:");
-                foreach (var shops in product.Shops)
-                {
-                    foreach (var shop in shops.ListShopName)
-                    {
-                        Console.WriteLine(shop);
-                    }
-                }
-                Console.WriteLine("____________________________________________________");
-            }
-        }
-
-        public void SearchProductByName(List<Product> products)
-        {
-            static string GetUserSearchTerm()
-            {
-                Console.WriteLine("Insert search term. You can insert full word or just a part of it: ");
-                string searchTerm = Console.ReadLine();
-                return searchTerm;
-            }
-
-            var searchTerm = GetUserSearchTerm();
-            foreach (var product in products)
-            {
-                if (product.Name.Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase))
-                    Console.WriteLine(product);
-            }
-        }
-
-        public void ShowProducersAndTheirProducts(List<Product> products)
-        {
-            var numberOfProductForEachProducer = products.GroupBy(p => p.Producer.ProducerName).Select(g =>
-                    new { Producer = g.Key, Count = g.Count() }).ToList();
-            foreach (var i in numberOfProductForEachProducer)
-            {
-                Console.WriteLine(i);
-            }
         }
     }
 }

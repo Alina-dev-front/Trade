@@ -91,7 +91,6 @@ C:\Users\Mr.X\Documents\Projects\Trade\ProductMSTest\bin\Debug\netcoreapp3.1\Tra
 C:\Users\Mr.X\Documents\Projects\Trade\ProductMSTest\obj\Debug\netcoreapp3.1\ProductMSTest.csprojAssemblyReference.cache
 C:\Users\Mr.X\Documents\Projects\Trade\ProductMSTest\obj\Debug\netcoreapp3.1\ProductMSTest.AssemblyInfoInputs.cache
 C:\Users\Mr.X\Documents\Projects\Trade\ProductMSTest\obj\Debug\netcoreapp3.1\ProductMSTest.AssemblyInfo.cs
-C:\Users\Mr.X\Documents\Projects\Trade\ProductMSTest\obj\Debug\netcoreapp3.1\ProductMSTest.csproj.CoreCompileInputs.cache
 C:\Users\Mr.X\Documents\Projects\Trade\ProductMSTest\obj\Debug\netcoreapp3.1\ProductMSTest.csproj.CopyComplete
 C:\Users\Mr.X\Documents\Projects\Trade\ProductMSTest\obj\Debug\netcoreapp3.1\ProductMSTest.dll
 C:\Users\Mr.X\Documents\Projects\Trade\ProductMSTest\obj\Debug\netcoreapp3.1\ProductMSTest.pdb

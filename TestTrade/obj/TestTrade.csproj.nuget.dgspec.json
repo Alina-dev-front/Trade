@@ -131,6 +131,10 @@
             "CsvHelper": {
               "target": "Package",
               "version": "[15.0.5, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.10.4, )"
             }
           },
           "imports": [

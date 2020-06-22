@@ -2305,7 +2305,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "CsvHelper": "15.0.5"
+          "CsvHelper": "15.0.5",
+          "MongoDB.Driver": "2.10.4"
         },
         "compile": {
           "bin/placeholder/Trade.dll": {}

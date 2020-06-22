@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CsvHelper.Configuration.Attributes;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using Trade.Repositories;
 
 
@@ -10,7 +12,8 @@ namespace Trade.Models
 {
     public class Product
     {
-        public long Id { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
         public Producer Producer { get; set; }

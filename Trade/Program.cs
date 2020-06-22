@@ -21,7 +21,7 @@ namespace Trade
                 switch (inputValue)
                 {
                     case "1":
-                        productRepository.ShowAllProducts(products);
+                        ShowAllProducts(products);
                         inputValue = Console.ReadLine();
                         break;
                     case "2":
@@ -37,11 +37,11 @@ namespace Trade
                         inputValue = Console.ReadLine();
                         break;
                     case "5":
-                        productRepository.SearchProductByName(products);
+                        SearchProductByName(products);
                         inputValue = Console.ReadLine();
                         break;
                     case "6":
-                        productRepository.ShowProducersAndTheirProducts(products);
+                        ShowProducersAndTheirProducts(products);
                         inputValue = Console.ReadLine();
                         break;
                     case "7":
@@ -97,7 +97,7 @@ namespace Trade
             }
             var input = Console.ReadLine();
             int idProductToDelete = Int32.Parse(input);
-            Product productToDelete = productRepository.GetById(idProductToDelete);
+            Product productToDelete = productRepository.GetById(idProductToDelete.ToString());
             productRepository.Delete(productToDelete);
             Console.WriteLine("The product has been successfully deleted from the list. Open the JSON-file to check.");
         }
@@ -135,6 +135,52 @@ namespace Trade
             foreach (var product in query)
             {
                 Console.WriteLine(product.Name + "  " + product.Price);
+            }
+        }
+
+        public static void ShowProducersAndTheirProducts(List<Product> products)
+        {
+            var numberOfProductForEachProducer = products.GroupBy(p => p.Producer.ProducerName).Select(g =>
+                    new { Producer = g.Key, Count = g.Count() }).ToList();
+            foreach (var i in numberOfProductForEachProducer)
+            {
+                Console.WriteLine(i);
+            }
+        }
+
+        public static void SearchProductByName(List<Product> products)
+        {
+            static string GetUserSearchTerm()
+            {
+                Console.WriteLine("Insert search term. You can insert full word or just a part of it: ");
+                string searchTerm = Console.ReadLine();
+                return searchTerm;
+            }
+
+            var searchTerm = GetUserSearchTerm();
+            foreach (var product in products)
+            {
+                if (product.Name.Contains(searchTerm, StringComparison.CurrentCultureIgnoreCase))
+                    Console.WriteLine(product);
+            }
+        }
+
+        public static void ShowAllProducts(List<Product> products)
+        {
+            foreach (var product in products)
+            {
+                Console.WriteLine("Name of product: " + product.Name);
+                Console.WriteLine("Price: " + product.Price);
+                Console.WriteLine("Made by: " + product.Producer.ProducerName);
+                Console.WriteLine("Shops where product is available:");
+                foreach (var shops in product.Shops)
+                {
+                    foreach (var shop in shops.ListShopName)
+                    {
+                        Console.WriteLine(shop);
+                    }
+                }
+                Console.WriteLine("____________________________________________________");
             }
         }
     }

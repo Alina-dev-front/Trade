@@ -6,10 +6,10 @@ using Trade.Repositories;
 namespace ProductMSTest
 {
     [TestClass]
-    public class UnitTest1
+    public class TradeMSTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CheckListOfProductFromCSVFile()
         {
             IProductRepository productRepository = new FileProductRepository();
             var products = productRepository.GetAll();

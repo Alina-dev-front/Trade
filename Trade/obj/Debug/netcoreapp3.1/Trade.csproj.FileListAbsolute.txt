@@ -8,8 +8,14 @@ C:\Users\Mr.X\Documents\Projects\Trade\Trade\bin\Debug\netcoreapp3.1\Trade.runti
 C:\Users\Mr.X\Documents\Projects\Trade\Trade\bin\Debug\netcoreapp3.1\Trade.dll
 C:\Users\Mr.X\Documents\Projects\Trade\Trade\bin\Debug\netcoreapp3.1\Trade.pdb
 C:\Users\Mr.X\Documents\Projects\Trade\Trade\bin\Debug\netcoreapp3.1\CsvHelper.dll
-C:\Users\Mr.X\Documents\Projects\Trade\Trade\obj\Debug\netcoreapp3.1\Trade.csproj.CoreCompileInputs.cache
 C:\Users\Mr.X\Documents\Projects\Trade\Trade\obj\Debug\netcoreapp3.1\Trade.csproj.CopyComplete
 C:\Users\Mr.X\Documents\Projects\Trade\Trade\obj\Debug\netcoreapp3.1\Trade.dll
 C:\Users\Mr.X\Documents\Projects\Trade\Trade\obj\Debug\netcoreapp3.1\Trade.pdb
 C:\Users\Mr.X\Documents\Projects\Trade\Trade\obj\Debug\netcoreapp3.1\Trade.genruntimeconfig.cache
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\bin\Debug\netcoreapp3.1\DnsClient.dll
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\bin\Debug\netcoreapp3.1\MongoDB.Bson.dll
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\bin\Debug\netcoreapp3.1\MongoDB.Driver.dll
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\bin\Debug\netcoreapp3.1\MongoDB.Driver.Core.dll
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\bin\Debug\netcoreapp3.1\MongoDB.Libmongocrypt.dll
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\bin\Debug\netcoreapp3.1\SharpCompress.dll
+C:\Users\Mr.X\Documents\Projects\Trade\Trade\obj\Debug\netcoreapp3.1\Trade.csproj.CoreCompileInputs.cache
